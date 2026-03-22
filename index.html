@@ -42,8 +42,14 @@
       gap: 15px;
     }
 
-    p {
+    /* TEXTO DINÂMICO */
+    .typing {
+      border-right: 3px solid #22c55e;
+      white-space: nowrap;
+      overflow: hidden;
       color: #cbd5f5;
+      font-size: 18px;
+      padding-right: 5px;
     }
 
     .btn {
@@ -98,18 +104,19 @@
 
   <div class=container>
 
-    <p>Em meios a Tecnologia Avançada 🔥</p>
+    <!-- TEXTO DINÂMICO -->
+    <p class=typing id=typing></p>
 
     <!-- BIO -->
-    <div class="card">
+    <div class=card>
       <h3>🚀 Biografia</h3>
       <p>Acredite que você pode, assim você já está no meio do caminho.</p>
     </div>
 
-    <!-- PROJETOS -->
+    <!-- SYSTEM -->
     <div class=card>
       <h3>💻 System</h3>
-      <p>desenvolvedor de sistemas </>.</p>
+      <p>Desenvolvedor de sistemas.</p>
     </div>
 
     <!-- LINKS -->
@@ -122,11 +129,11 @@
         <i class=fab fa-tiktok></i> TikTok
       </a>
 
-      <a href=https://wa.me/55whatsappsonopv target=_blank class=btn>
+      <a href=https://wa.me/55SEUNUMEROAQUI target=_blank class=btn>
         <i class=fab fa-whatsapp></i> WhatsApp
       </a>
 
-      <a href=mailto:kauanzinmaker404@gmail.com?subject=Contato pelo site class=btn>
+      <a href=mailto:kauanzinmaker404@gmail.com class=btn>
         <i class=fas fa-envelope></i> Gmail
       </a>
     </div>
@@ -136,6 +143,40 @@
   <footer>
     © 2026 Kauanzinmaker - Todos os direitos reservados.
   </footer>
+
+  <!-- SCRIPT DIGITANDO -->
+  <script>
+    const texts = [
+      Em meios a Tecnologia Avançada 🔥,
+      Criando sistemas. 💻
+    ];
+
+    let count = 0;
+    let index = 0;
+    let currentText = "";
+    let letter = "";
+
+    (function type() {
+      if (count === texts.length) {
+        count = 0;
+      }
+
+      currentText = texts[count];
+      letter = currentText.slice(0, ++index);
+
+      document.getElementById(typing).textContent = letter;
+
+      if (letter.length === currentText.length) {
+        setTimeout(() => {
+          index = 0;
+          count++;
+          setTimeout(type, 500);
+        }, 2000);
+      } else {
+        setTimeout(type, 100);
+      }
+    })();
+  </script>
 
 </body>
 </html>
