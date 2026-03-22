@@ -163,16 +163,6 @@ function digitar(){
     i++;
     setTimeout(digitar,40);
   }
-}
-
-/* IP FAKE */
-function fakeIP(){
-  let ip = Array(4).fill(0).map(()=>Math.floor(Math.random()*255)).join(".");
-  setTimeout(()=>{
-    document.getElementById("typing").innerHTML += "<br>IP: "+ip;
-  },2000);
-}
-
 /* MATRIX */
 const canvas=document.getElementById("matrix");
 const ctx=canvas.getContext("2d");
