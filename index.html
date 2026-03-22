@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang=pt-br>
 <head>
-  <meta charset="UTF-8">
+  <meta charset=UTF-8>
   <title>Kauanzinmaker Dev</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name=viewport content=width=device-width, initial-scale=1.0>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <!-- Fonte -->
+  <link href=https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap rel=stylesheet>
+
+  <!-- Ícones -->
+  <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css>
 
   <style>
     * {
@@ -38,10 +42,6 @@
       gap: 15px;
     }
 
-    h1 {
-      font-size: 40px;
-    }
-
     p {
       color: #cbd5f5;
     }
@@ -53,14 +53,15 @@
       color: #000;
       font-weight: bold;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
     }
 
     .btn:hover {
       background: #16a34a;
-      transform: scale(1.05);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(34, 197, 94, 0.4);
     }
 
     .card {
@@ -94,18 +95,40 @@
   <header>
     kauanzinmaker ⚡ DEV
   </header>
-  <div class="container">
-  <p>Em meios a Tecnologia Avançada 🔥</p>
 
+  <div class=container>
+
+    <p>Em meios a Tecnologia Avançada 🔥</p>
+
+    <!-- BIO -->
     <div class="card">
       <h3>🚀 Biografia</h3>
       <p>Acredite que você pode, assim você já está no meio do caminho.</p>
     </div>
 
-    <div class="links">
-      <a href="https://instagram.com/kauanzinmaker" target="_blank" class="btn">📸 Instagram</a>
-      <a href="https://tiktok.com/@oliveirazz7_" target="_blank" class="btn">🎵 TikTok</a>
-      <a href="https://wa.me/55SEUNUMEROAQUI" target="_blank" class="btn">💬 WhatsApp</a>
+    <!-- PROJETOS -->
+    <div class=card>
+      <h3>💻 Projetos</h3>
+      <p>Em breve novos projetos kkkkj...</p>
+    </div>
+
+    <!-- LINKS -->
+    <div class=links>
+      <a href=https://instagram.com/kauanzinmaker target=_blank class=btn>
+        <i class=fab fa-instagram></i> Instagram
+      </a>
+
+      <a href=https://tiktok.com/@oliveirazz7_ target=_blank class=btn>
+        <i class=fab fa-tiktok></i> TikTok
+      </a>
+
+      <a href=https://wa.me/55whatsappsonopv target=_blank class=btn>
+        <i class=fab fa-whatsapp></i> WhatsApp
+      </a>
+
+      <a href=mailto:kauanzinmaker404@gmail.com?subject=Contato pelo site class=btn>
+        <i class=fas fa-envelope></i> Gmail
+      </a>
     </div>
 
   </div>
