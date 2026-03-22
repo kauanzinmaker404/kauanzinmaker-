@@ -2,119 +2,94 @@
 <html>
 <head>
   <title>Kauanzin</title>
+
   <style>
     body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+      margin: 0;
+      font-family: Arial;
+      text-align: center;
+      color: white;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: black; /* AGORA VAI FICAR PRETO */
+      overflow: hidden;
+    }
 
-    canvas {
+    /* FUNDO COM NOME */
+    body::before {
+      content: "@kauanzinmaker @kauanzinmaker @kauanzinmaker @kauanzinmaker";
       position: fixed;
-      top: 0;
-      left: 0;
+      width: 200%;
+      height: 200%;
+      font-size: 60px;
+      color: rgba(0, 255, 204, 0.05);
+      transform: rotate(-30deg);
+      animation: moveBg 20s linear infinite;
       z-index: -1;
     }
 
+    @keyframes moveBg {
+      from { transform: rotate(-30deg) translateY(0); }
+      to { transform: rotate(-30deg) translateY(-400px); }
+    }
+
     .container {
-  text-align: center;
-}
+      text-align: center;
+    }
 
     img {
       width: 150px;
+      height: 150px;
+      object-fit: cover;
       border-radius: 50%;
-      border: 3px solid #00ffcc;
-      box-shadow: 0 0 25px #00ffcc;
+      border: 4px solid #00ffcc;
+      box-shadow: 0 0 30px #00ffcc;
       margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 8vw;
-      margin-bottom: 50px;
-      text-shadow: 0 0 10px #00ffcc;
+      font-size: 55px;
+      text-shadow: 0 0 20px #00ffcc;
+      margin-bottom: 30px;
     }
 
     a {
       display: block;
-      margin: 20px auto;
-      padding: 22px;
-      width: 300px;
-      background: #ff0000 ;
+      margin: 15px auto;
+      padding: 20px;
+      width: 280px;
+      background: #00ffcc;
       color: black;
       text-decoration: none;
-      border-radius: 15px;
+      border-radius: 12px;
+      font-size: 20px;
       font-weight: bold;
-      font-size: 22px;
-      transition: 0.3s;
       box-shadow: 0 0 15px #00ffcc;
+      transition: 0.3s;
     }
 
     a:hover {
-      transform: scale(1.08);
+      transform: scale(1.1);
       background: #00ccaa;
-      box-shadow: 0 0 30px #00ffcc;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
+
 <body>
 
-<canvas id="bg"></canvas>
+  <div class="container">
 
-<div class="container">
-  <img src="https://via.placeholder.com/150">
-  <h1>@kauanzinmaker</h1>
+    <!-- COLOCA SUA FOTO AQUI -->
+    <img src="https://imgur.com/a/SMiJGeq">
 
-  <a href="https://tiktok.com/@oliveirazz7_">🔥 TikTok</a>
-  <a href="https://instagram.com/kauanzinmaker">📸 Instagram</a>
-</div>
+    <h1>@kauanzinmaker</h1>
 
-<script>
-  const canvas = document.getElementById("bg");
-  const ctx = canvas.getContext("2d");
+    <a href="https://tiktok.com/@oliveirazz7_">🔥 TikTok</a>
+    <a href="https://instagram.com/kauanzinmaker">📸 Instagram</a>
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-
-  let particles = [];
-
-  for (let i = 0; i < 100; i++) {
-    particles.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2,
-      speedY: Math.random() * 1
-    });
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    ctx.fillStyle = "#00ffcc";
-
-    particles.forEach(p => {
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fill();
-
-      p.y += p.speedY;
-
-      if (p.y > canvas.height) {
-        p.y = 0;
-        p.x = Math.random() * canvas.width;
-      }
-    });
-
-    requestAnimationFrame(draw);
-  }
-
-  draw();
-</script>
+  </div>
 
 </body>
 </html>
