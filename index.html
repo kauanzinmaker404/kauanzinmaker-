@@ -29,35 +29,29 @@
     .container {
       text-align: center;
       position: relative;
-      top: 35vh;
+      top: 30vh;
     }
 
-    h1 {
-      font-size: 40px;
-      text-shadow: 0 0 10px #00ff00;
+    /* GLITCH EFFECT */
+    .glitch {
+      font-size: 45px;
+      position: relative;
+      color: #00ff00;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px red; }
+      20% { text-shadow: -2px -2px blue; }
+      40% { text-shadow: 2px -2px red; }
+      60% { text-shadow: -2px 2px blue; }
+      80% { text-shadow: 2px 2px red; }
+      100% { text-shadow: none; }
     }
 
     p {
       margin-top: 10px;
       color: #00cc00;
-    }
-
-    .btn {
-      margin-top: 10px;
-      padding: 12px 25px;
-      border: 1px solid #00ff00;
-      background: transparent;
-      color: #00ff00;
-      cursor: pointer;
-      transition: 0.3s;
-      display: inline-block;
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      background: #00ff00;
-      color: black;
-      box-shadow: 0 0 15px #00ff00;
     }
 
     .links {
@@ -68,36 +62,95 @@
       flex-wrap: wrap;
     }
 
+    .btn {
+      padding: 12px 25px;
+      border: 1px solid #00ff00;
+      background: transparent;
+      color: #00ff00;
+      cursor: pointer;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: #00ff00;
+      color: black;
+      box-shadow: 0 0 20px #00ff00;
+    }
+
     .card {
       margin-top: 25px;
       padding: 15px;
       border: 1px solid #00ff00;
       display: inline-block;
     }
+
+    /* TELA DE ACESSO */
+    .login {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 999;
+    }
+
+    .login button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: transparent;
+      border: 1px solid #00ff00;
+      color: #00ff00;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
+<!-- TELA FAKE -->
+<div class="login" id="login">
+  <h2>Acessar sistema 🔐</h2>
+  <button onclick="entrar()">ENTRAR</button>
+</div>
+
 <canvas id="matrix"></canvas>
 
 <div class="container">
-  <h1>kauanzinmaker</h1>
-  <p>Coé rpzd segue nois ai 👾</p>
-  <p>systems developer 💻</p>
+  <h1 class="glitch">kauanzinmaker.exe</h1>
+  <p>Acesso liberado 👾</p>
+  <p>Segue ai brother 💻</p>
 
   <div class="links">
     <a href="https://instagram.com/kauanzinmaker" target="_blank" class="btn">Instagram</a>
     <a href="https://tiktok.com/@oliveirazz7_" target="_blank" class="btn">TikTok</a>
-    <a href="https://wa.me/9999999999" target="_blank" class="btn">WhatsApp</a>
+    <a href="https://wa.me/55xxxxxxxxxx" target="_blank" class="btn">WhatsApp</a>
   </div>
 
   <div class="card">
     <h3>Sobre mim</h3>
-    <p>Nunca é tarde para um bom recomeço</p>
+    <p>systems developer</p>
   </div>
 </div>
 
 <script>
+  function entrar() {
+    document.getElementById("login").style.display = "none";
+    beep();
+  }
+
+  function beep() {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    osc.type = "square";
+    osc.frequency.setValueAtTime(600, ctx.currentTime);
+    osc.connect(ctx.destination);
+    osc.start();
+    setTimeout(() => osc.stop(), 100);
+  }
+
   const canvas = document.getElementById("matrix");
   const ctx = canvas.getContext("2d");
 
@@ -108,27 +161,22 @@
   const fontSize = 14;
   const columns = canvas.width / fontSize;
 
-  const drops = [];
-
-  for (let i = 0; i < columns; i++) {
-    drops[i] = 1;
-  }
+  const drops = Array(columns).fill(1);
 
   function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = "#00ff00";
     ctx.font = fontSize + "px monospace";
 
     for (let i = 0; i < drops.length; i++) {
-      const text = letters.charAt(Math.floor(Math.random() * letters.length));
+      const text = letters[Math.floor(Math.random() * letters.length)];
       ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
       if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
         drops[i] = 0;
       }
-
       drops[i]++;
     }
   }
