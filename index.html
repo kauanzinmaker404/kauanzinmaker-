@@ -42,14 +42,23 @@
       gap: 15px;
     }
 
-    /* TEXTO DINÂMICO */
+    /* TEXTO DIGITANDO */
     .typing {
-      border-right: 3px solid #22c55e;
-      white-space: nowrap;
-      overflow: hidden;
       color: #cbd5f5;
       font-size: 18px;
-      padding-right: 5px;
+      display: inline-block;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 3px;
+      background: #22c55e;
+      margin-left: 5px;
+      animation: blink 0.7s infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0 }
     }
 
     .btn {
@@ -104,8 +113,11 @@
 
   <div class=container>
 
-    <!-- TEXTO DINÂMICO -->
-    <p class=typing id=typing></p>
+    <!-- TEXTO -->
+    <div>
+      <span id=typing class=typing></span>
+      <span class=cursor></span>
+    </div>
 
     <!-- BIO -->
     <div class=card>
@@ -126,7 +138,7 @@
       </a>
 
       <a href=https://tiktok.com/@oliveirazz7_ target=_blank class=btn>
-        <i class=fab fa-tiktok></i> TikTok
+        <i class=fab fa-tiktok"></i> TikTok
       </a>
 
       <a href=https://wa.me/55SEUNUMEROAQUI target=_blank class=btn>
@@ -144,17 +156,24 @@
     © 2026 Kauanzinmaker - Todos os direitos reservados.
   </footer>
 
-  <!-- SCRIPT DIGITANDO -->
+  <!-- SOM (bem leve) -->
+  <audio id=typingSound src=https://www.soundjay.com/mechanical/keyboard-1.mp3 preload=auto></audio>
+
+  <!-- SCRIPT -->
   <script>
     const texts = [
       Em meios a Tecnologia Avançada 🔥,
-      Criando sistemas. 💻
+      Criando sistemas incríveis 💻,
+      Bem-vindo ao meu mundo dev ⚡,
+      Sempre evoluindo 🚀
     ];
 
     let count = 0;
     let index = 0;
     let currentText = "";
     let letter = "";
+
+    const sound = document.getElementById(typingSound);
 
     (function type() {
       if (count === texts.length) {
@@ -164,7 +183,11 @@
       currentText = texts[count];
       letter = currentText.slice(0, ++index);
 
-      document.getElementById(typing).textContent = letter;
+      document.getElementById("typing").textContent = letter;
+
+      // toca som
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
 
       if (letter.length === currentText.length) {
         setTimeout(() => {
