@@ -8,21 +8,34 @@
       font-family: Arial;
       text-align: center;
       color: white;
-      background: linear-gradient(135deg, #0f0f0f, #1a1a1a, #000);
-      padding-top: 80px;
+      overflow: hidden;
+      background: black;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .container {
+      margin-top: 100px;
+      animation: fadeIn 1.5s ease;
     }
 
     img {
       width: 150px;
       border-radius: 50%;
       border: 3px solid #00ffcc;
-      box-shadow: 0 0 20px #00ffcc;
+      box-shadow: 0 0 25px #00ffcc;
       margin-bottom: 20px;
     }
 
     h1 {
-      font-size: 32px;
+      font-size: 34px;
       margin-bottom: 40px;
+      text-shadow: 0 0 10px #00ffcc;
     }
 
     a {
@@ -37,34 +50,74 @@
       font-weight: bold;
       font-size: 18px;
       transition: 0.3s;
-      box-shadow: 0 0 10px #00ffcc;
+      box-shadow: 0 0 15px #00ffcc;
     }
 
     a:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
       background: #00ccaa;
-      box-shadow: 0 0 25px #00ffcc;
-    }
-
-    .container {
-      animation: fadeIn 1.5s ease;
+      box-shadow: 0 0 30px #00ffcc;
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
+      from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <img src="https://via.placeholder.com/150">
-    <h1>@kauanzinmaker</h1>
+<canvas id="bg"></canvas>
 
-    <a href="https://tiktok.com/@oliveirazz7_">🔥 TikTok</a>
-    <a href="https://instagram.com/kauanzinmaker">📸 Instagram</a>
-  </div>
+<div class="container">
+  <img src="https://via.placeholder.com/150">
+  <h1>@kauanzinmaker</h1>
+
+  <a href="https://tiktok.com/@oliveirazz7_">🔥 TikTok</a>
+  <a href="https://instagram.com/kauanzinmaker">📸 Instagram</a>
+</div>
+
+<script>
+  const canvas = document.getElementById("bg");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  let particles = [];
+
+  for (let i = 0; i < 100; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2,
+      speedY: Math.random() * 1
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "#00ffcc";
+
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fill();
+
+      p.y += p.speedY;
+
+      if (p.y > canvas.height) {
+        p.y = 0;
+        p.x = Math.random() * canvas.width;
+      }
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
+</script>
 
 </body>
 </html>
