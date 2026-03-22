@@ -7,73 +7,99 @@
     body {
       margin: 0;
       font-family: Arial;
-      text-align: center;
+      background: black;
       color: white;
-      height: 100vh;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      background: black; /* AGORA VAI FICAR PRETO */
-      overflow: hidden;
+      height: 100vh;
     }
 
-    /* FUNDO COM NOME */
-    body::before {
-      content: "@kauanzinmaker @kauanzinmaker @kauanzinmaker @kauanzinmaker";
+    /* PARTÍCULAS */
+    body::after {
+      content: "";
       position: fixed;
-      width: 200%;
-      height: 200%;
-      font-size: 60px;
-      color: rgba(0, 255, 204, 0.05);
-      transform: rotate(-30deg);
-      animation: moveBg 20s linear infinite;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(#00ffcc 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: moveParticles 10s linear infinite;
+      opacity: 0.2;
       z-index: -1;
     }
 
-    @keyframes moveBg {
-      from { transform: rotate(-30deg) translateY(0); }
-      to { transform: rotate(-30deg) translateY(-400px); }
+    @keyframes moveParticles {
+      from { transform: translateY(0); }
+      to { transform: translateY(-100px); }
     }
 
     .container {
       text-align: center;
     }
 
-    img {
+    /* LOGO ? */
+    .logo {
       width: 150px;
       height: 150px;
-      object-fit: cover;
       border-radius: 50%;
-      border: 4px solid #00ffcc;
-      box-shadow: 0 0 30px #00ffcc;
-      margin-bottom: 20px;
+      border: 3px solid #00ffcc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 60px;
+      font-weight: bold;
+      color: #00ffcc;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 25px #00ffcc;
+      animation: pulse 2s infinite;
     }
 
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px #00ffcc; }
+      50% { box-shadow: 0 0 40px #00ffcc; }
+      100% { box-shadow: 0 0 10px #00ffcc; }
+    }
+
+    /* NOME GLITCH */
     h1 {
-      font-size: 55px;
-      text-shadow: 0 0 20px #00ffcc;
-      margin-bottom: 30px;
+      font-size: 60px;
+      position: relative;
+      animation: glitch 1s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 2px #00ffcc; }
+      20% { text-shadow: -2px -2px #ff00ff; }
+      40% { text-shadow: 2px -2px #00ffcc; }
+      60% { text-shadow: -2px 2px #ff00ff; }
+      80% { text-shadow: 2px 2px #00ffcc; }
+      100% { text-shadow: 0 0 10px #00ffcc; }
     }
 
     a {
       display: block;
-      margin: 15px auto;
+      margin: 20px auto;
       padding: 20px;
       width: 280px;
-      background: #00ffcc;
-      color: black;
+      background: transparent;
+      border: 2px solid #00ffcc;
+      color: #00ffcc;
       text-decoration: none;
       border-radius: 12px;
       font-size: 20px;
       font-weight: bold;
-      box-shadow: 0 0 15px #00ffcc;
       transition: 0.3s;
+      box-shadow: 0 0 10px #00ffcc;
     }
 
     a:hover {
+      background: #00ffcc;
+      color: black;
       transform: scale(1.1);
-      background: #00ccaa;
+      box-shadow: 0 0 25px #00ffcc;
     }
+
   </style>
 </head>
 
@@ -81,8 +107,7 @@
 
   <div class="container">
 
-    <!-- COLOCA SUA FOTO AQUI -->
-    <img src=https://imgur.com/a/SMiJGeq>
+    <div class="logo">?</div>
 
     <h1>@kauanzinmaker</h1>
 
