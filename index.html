@@ -1,127 +1,124 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <title>kauanzinmaker</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>kauanzinmaker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: monospace;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:monospace;}
 
-    body {
-      background: black;
-      color: #00ff00;
-      overflow: hidden;
-    }
+body{
+  background:black;
+  color:#00ff00;
+  overflow:hidden;
+}
 
-    canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-    }
+/* MATRIX */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-1;
+}
 
-    .container {
-      text-align: center;
-      position: relative;
-      top: 30vh;
-    }
+/* LOGIN */
+.login{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:black;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:999;
+}
 
-    /* GLITCH EFFECT */
-    .glitch {
-      font-size: 45px;
-      position: relative;
-      color: #00ff00;
-      animation: glitch 1s infinite;
-    }
+.login h2{
+  margin-bottom:15px;
+}
 
-    @keyframes glitch {
-      0% { text-shadow: 2px 2px red; }
-      20% { text-shadow: -2px -2px blue; }
-      40% { text-shadow: 2px -2px red; }
-      60% { text-shadow: -2px 2px blue; }
-      80% { text-shadow: 2px 2px red; }
-      100% { text-shadow: none; }
-    }
+.login button{
+  padding:10px 20px;
+  background:transparent;
+  border:1px solid #00ff00;
+  color:#00ff00;
+  cursor:pointer;
+}
 
-    p {
-      margin-top: 10px;
-      color: #00cc00;
-    }
+/* TERMINAL */
+.terminal{
+  position:absolute;
+  top:30%;
+  width:100%;
+  text-align:center;
+  display:none;
+}
 
-    .links {
-      margin-top: 20px;
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+.glitch{
+  font-size:45px;
+  animation:glitch 1s infinite;
+}
 
-    .btn {
-      padding: 12px 25px;
-      border: 1px solid #00ff00;
-      background: transparent;
-      color: #00ff00;
-      cursor: pointer;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+@keyframes glitch{
+  0%{text-shadow:2px 2px red;}
+  20%{text-shadow:-2px -2px blue;}
+  40%{text-shadow:2px -2px red;}
+  60%{text-shadow:-2px 2px blue;}
+  80%{text-shadow:2px 2px red;}
+  100%{text-shadow:none;}
+}
 
-    .btn:hover {
-      background: #00ff00;
-      color: black;
-      box-shadow: 0 0 20px #00ff00;
-    }
+.links{
+  margin-top:20px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+}
 
-    .card {
-      margin-top: 25px;
-      padding: 15px;
-      border: 1px solid #00ff00;
-      display: inline-block;
-    }
+.btn{
+  padding:12px 25px;
+  border:1px solid #00ff00;
+  color:#00ff00;
+  text-decoration:none;
+  transition:.3s;
+}
 
-    /* TELA DE ACESSO */
-    .login {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      background: black;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      z-index: 999;
-    }
+.btn:hover{
+  background:#00ff00;
+  color:black;
+  box-shadow:0 0 20px #00ff00;
+}
 
-    .login button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: transparent;
-      border: 1px solid #00ff00;
-      color: #00ff00;
-      cursor: pointer;
-    }
-  </style>
+.card{
+  margin-top:20px;
+  border:1px solid #00ff00;
+  padding:10px;
+  display:inline-block;
+}
+
+/* TEXTO DIGITANDO */
+#typing{
+  margin-top:10px;
+  color:#00cc00;
+}
+</style>
 </head>
+
 <body>
 
-<!-- TELA FAKE -->
 <div class="login" id="login">
-  <h2>Acessar sistema 🔐</h2>
-  <button onclick="entrar()">ENTRAR</button>
+  <h2>🔐 ACESSAR SISTEMA</h2>
+  <button onclick="iniciar()">ENTRAR</button>
 </div>
 
 <canvas id="matrix"></canvas>
 
-<div class="container">
-  <h1 class="glitch">kauanzinmaker.exe</h1>
-  <p>Acesso liberado 👾</p>
-  <p>Segue ai brother 💻</p>
+<div class="terminal" id="terminal">
+  <h1 class="glitch">kauanzinmaker</h1>
+  <p id="typing"></p>
 
   <div class="links">
     <a href="https://instagram.com/kauanzinmaker" target="_blank" class="btn">Instagram</a>
@@ -131,57 +128,82 @@
 
   <div class="card">
     <h3>Sobre mim</h3>
-    <p>systems developer</p>
+    <p>vivendo e aprendendo</p>
   </div>
 </div>
 
 <script>
-  function entrar() {
-    document.getElementById("login").style.display = "none";
-    beep();
+function iniciar(){
+  document.getElementById("login").style.display="none";
+  document.getElementById("terminal").style.display="block";
+
+  beep();
+  digitar();
+  fakeIP();
+}
+
+/* SOM */
+function beep(){
+  const ctx=new (window.AudioContext||window.webkitAudioContext)();
+  const osc=ctx.createOscillator();
+  osc.type="square";
+  osc.frequency.setValueAtTime(700,ctx.currentTime);
+  osc.connect(ctx.destination);
+  osc.start();
+  setTimeout(()=>osc.stop(),100);
+}
+
+/* TEXTO DIGITANDO */
+const texto="Acesso liberado 👾 | Criando sites e dominando sistemas 💻";
+let i=0;
+
+function digitar(){
+  if(i<texto.length){
+    document.getElementById("typing").innerHTML+=texto.charAt(i);
+    i++;
+    setTimeout(digitar,40);
   }
+}
 
-  function beep() {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = ctx.createOscillator();
-    osc.type = "square";
-    osc.frequency.setValueAtTime(600, ctx.currentTime);
-    osc.connect(ctx.destination);
-    osc.start();
-    setTimeout(() => osc.stop(), 100);
-  }
+/* IP FAKE */
+function fakeIP(){
+  let ip = Array(4).fill(0).map(()=>Math.floor(Math.random()*255)).join(".");
+  setTimeout(()=>{
+    document.getElementById("typing").innerHTML += "<br>IP: "+ip;
+  },2000);
+}
 
-  const canvas = document.getElementById("matrix");
-  const ctx = canvas.getContext("2d");
+/* MATRIX */
+const canvas=document.getElementById("matrix");
+const ctx=canvas.getContext("2d");
 
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
+canvas.height=window.innerHeight;
+canvas.width=window.innerWidth;
 
-  const letters = "01";
-  const fontSize = 14;
-  const columns = canvas.width / fontSize;
+const letters="01";
+const fontSize=14;
+const columns=canvas.width/fontSize;
+const drops=Array(columns).fill(1);
 
-  const drops = Array(columns).fill(1);
+function draw(){
+  ctx.fillStyle="rgba(0,0,0,0.05)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
 
-  function draw() {
-    ctx.fillStyle = "rgba(0,0,0,0.05)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle="#00ff00";
+  ctx.font=fontSize+"px monospace";
 
-    ctx.fillStyle = "#00ff00";
-    ctx.font = fontSize + "px monospace";
+  for(let i=0;i<drops.length;i++){
+    const text=letters[Math.floor(Math.random()*letters.length)];
+    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
 
-    for (let i = 0; i < drops.length; i++) {
-      const text = letters[Math.floor(Math.random() * letters.length)];
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
-      }
-      drops[i]++;
+    if(drops[i]*fontSize>canvas.height&&Math.random()>0.975){
+      drops[i]=0;
     }
+    drops[i]++;
   }
+}
 
-  setInterval(draw, 33);
+setInterval(draw,33);
 </script>
 
 </body>
