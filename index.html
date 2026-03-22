@@ -1,200 +1,107 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>kauanzinmaker</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Kauanzinmaker Dev</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:monospace;}
+  <!-- Fonte bonita -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-body{
-  background:black;
-  color:#00ff00;
-  overflow:hidden;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
 
-/* MATRIX */
-canvas{
-  position:fixed;
-  top:0;
-  left:0;
-  z-index:-1;
-}
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff;
+    }
 
-/* LOGIN */
-.login{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:black;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  z-index:999;
-}
+    header {
+      padding: 20px;
+      text-align: center;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
 
-.login h2{
-  margin-bottom:15px;
-}
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 80vh;
+      text-align: center;
+    }
 
-.login button{
-  padding:10px 20px;
-  background:transparent;
-  border:1px solid #00ff00;
-  color:#00ff00;
-  cursor:pointer;
-}
+    h1 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
 
-/* TERMINAL */
-.terminal{
-  position:absolute;
-  top:30%;
-  width:100%;
-  text-align:center;
-  display:none;
-}
+    p {
+      color: #cbd5f5;
+      margin-bottom: 20px;
+    }
 
-.glitch{
-  font-size:45px;
-  animation:glitch 1s infinite;
-}
+    .btn {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 8px;
+      background: #22c55e;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-@keyframes glitch{
-  0%{text-shadow:2px 2px red;}
-  20%{text-shadow:-2px -2px blue;}
-  40%{text-shadow:2px -2px red;}
-  60%{text-shadow:-2px 2px blue;}
-  80%{text-shadow:2px 2px red;}
-  100%{text-shadow:none;}
-}
+    .btn:hover {
+      background: #16a34a;
+      transform: scale(1.05);
+    }
 
-.links{
-  margin-top:20px;
-  display:flex;
-  justify-content:center;
-  gap:10px;
-  flex-wrap:wrap;
-}
+    .card {
+      margin-top: 30px;
+      padding: 20px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px);
+      width: 300px;
+    }
 
-.btn{
-  padding:12px 25px;
-  border:1px solid #00ff00;
-  color:#00ff00;
-  text-decoration:none;
-  transition:.3s;
-}
-
-.btn:hover{
-  background:#00ff00;
-  color:black;
-  box-shadow:0 0 20px #00ff00;
-}
-
-.card{
-  margin-top:20px;
-  border:1px solid #00ff00;
-  padding:10px;
-  display:inline-block;
-}
-
-/* TEXTO DIGITANDO */
-#typing{
-  margin-top:10px;
-  color:#00cc00;
-}
-</style>
+    footer {
+      text-align: center;
+      padding: 15px;
+      font-size: 14px;
+      color: #94a3b8;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="login" id="login">
-  <h2>🔐 ACESSAR SISTEMA</h2>
-  <button onclick="iniciar()">ENTRAR</button>
-</div>
+  <header>
+    kauanzinmaker ⚡ DEV
+  </header>
 
-<canvas id="matrix"></canvas>
+  <div class="container">
+    <h1>Eai rzpd segue nois ai 👋</h1>
+    <p>Em meios a tecnologia 🔥</p>
 
-<div class="terminal" id="terminal">
-  <h1 class="glitch">kauanzinmaker</h1>
-  <p id="typing"></p>
+    <button class="btn">Ver Projetos</button>
 
-  <div class="links">
-    <a href="https://instagram.com/kauanzinmaker" target="_blank" class="btn">Instagram</a>
-    <a href="https://tiktok.com/@oliveirazz7_" target="_blank" class="btn">TikTok</a>
-    <a href="https://wa.me/55xxxxxxxxxx" target="_blank" class="btn">WhatsApp</a>
+    <div class="card">
+      <h3>🚀 Sobre mim</h3>
+      <p>Acredite que você pode, assim você já está no meio do caminho.</p>
+    </div>
   </div>
 
-  <div class="card">
-    <h3>Sobre mim</h3>
-    <p>Em meios a tecnologia...</p>
-  </div>
-</div>
-
-<script>
-function iniciar(){
-  document.getElementById("login").style.display="none";
-  document.getElementById("terminal").style.display="block";
-
-  beep();
-  digitar();
-  fakeIP();
-}
-
-/* SOM */
-function beep(){
-  const ctx=new (window.AudioContext||window.webkitAudioContext)();
-  const osc=ctx.createOscillator();
-  osc.type="square";
-  osc.frequency.setValueAtTime(700,ctx.currentTime);
-  osc.connect(ctx.destination);
-  osc.start();
-  setTimeout(()=>osc.stop(),100);
-}
-
-/* TEXTO DIGITANDO */
-const texto="Acredite que você pode, assim você já está no meio do caminho 💻";
-let i=0;
-
-function digitar(){
-  if(i<texto.length){
-    document.getElementById("typing").innerHTML+=texto.charAt(i);
-    i++;
-    setTimeout(digitar,40);
-  }
-/* MATRIX */
-const canvas=document.getElementById("matrix");
-const ctx=canvas.getContext("2d");
-
-canvas.height=window.innerHeight;
-canvas.width=window.innerWidth;
-
-const letters="01";
-const fontSize=14;
-const columns=canvas.width/fontSize;
-const drops=Array(columns).fill(1);
-
-function draw(){
-  ctx.fillStyle="rgba(0,0,0,0.05)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  ctx.fillStyle="#00ff00";
-  ctx.font=fontSize+"px monospace";
-
-  for(let i=0;i<drops.length;i++){
-    const text=letters[Math.floor(Math.random()*letters.length)];
-    ctx.fillText(text,i*fontSize,drops[i]*fontSize);
-
-    if(drops[i]*fontSize>canvas.height&&Math.random()>0.975){
-      drops[i]=0;
-    }
-    drops[i]++;
-  }
-}
-
-setInterval(draw,33);
-</script>
+  <footer>
+    © 2026 Kauanzinmaker - Todos os direitos reservados
+  </footer>
 
 </body>
 </html>
