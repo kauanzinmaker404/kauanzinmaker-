@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang=pt-br>
+<html lang="pt-br">
 <head>
-  <meta charset=UTF-8>
+  <meta charset="UTF-8">
   <title>Kauanzinmaker Dev</title>
-  <meta name=viewport content=width=device-width, initial-scale=1.0>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Fonte -->
-  <link href=https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap rel=stylesheet>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
   <!-- Ícones -->
-  <link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
   <style>
     * {
@@ -111,42 +111,42 @@
     kauanzinmaker ⚡ DEV
   </header>
 
-  <div class=container>
+  <div class="container">
 
     <!-- TEXTO -->
     <div>
-      <span id=typing class=typing></span>
-      <span class=cursor></span>
+      <span id="typing" class="typing"></span>
+      <span class="cursor"></span>
     </div>
 
     <!-- BIO -->
-    <div class=card>
+    <div class="card">
       <h3>🚀 Biografia</h3>
       <p>Acredite que você pode, assim você já está no meio do caminho.</p>
     </div>
 
     <!-- SYSTEM -->
-    <div class=card>
+    <div class="card">
       <h3>💻 System</h3>
       <p>Desenvolvedor de sistemas.</p>
     </div>
 
     <!-- LINKS -->
-    <div class=links>
-      <a href=https://instagram.com/kauanzinmaker target=_blank class=btn>
-        <i class=fab fa-instagram></i> Instagram
+    <div class="links">
+      <a href="https://instagram.com/kauanzinmaker" target="_blank" class="btn">
+        <i class="fab fa-instagram"></i> Instagram
       </a>
 
-      <a href=https://tiktok.com/@oliveirazz7_ target=_blank class=btn>
-        <i class=fab fa-tiktok"></i> TikTok
+      <a href="https://tiktok.com/@oliveirazz7_" target="_blank" class="btn">
+        <i class="fab fa-tiktok"></i> TikTok
       </a>
 
-      <a href=https://wa.me/55SEUNUMEROAQUI target=_blank class=btn>
-        <i class=fab fa-whatsapp></i> WhatsApp
+      <a href="https://wa.me/55SEUNUMEROAQUI" target="_blank" class="btn">
+        <i class="fab fa-whatsapp"></i> WhatsApp
       </a>
 
-      <a href=mailto:kauanzinmaker404@gmail.com class=btn>
-        <i class=fas fa-envelope></i> Gmail
+      <a href="mailto:kauanzinmaker404@gmail.com" class="btn">
+        <i class="fas fa-envelope"></i> Gmail
       </a>
     </div>
 
@@ -157,15 +157,15 @@
   </footer>
 
   <!-- SOM (bem leve) -->
-  <audio id=typingSound src=https://www.soundjay.com/mechanical/keyboard-1.mp3 preload=auto></audio>
+  <audio id="typingSound" src="https://www.soundjay.com/mechanical/keyboard-1.mp3" preload="auto"></audio>
 
   <!-- SCRIPT -->
   <script>
     const texts = [
-      Em meios a Tecnologia Avançada 🔥,
-      Criando sistemas incríveis 💻,
-      Bem-vindo ao meu mundo dev ⚡,
-      Sempre evoluindo 🚀
+      "Em meios a Tecnologia Avançada 🔥",
+      "Criando sistemas incríveis 💻",
+      "Bem-vindo ao meu mundo dev ⚡",
+      "Sempre evoluindo 🚀"
     ];
 
     let count = 0;
@@ -173,7 +173,7 @@
     let currentText = "";
     let letter = "";
 
-    const sound = document.getElementById(typingSound);
+    const sound = document.getElementById("typingSound");
 
     (function type() {
       if (count === texts.length) {
